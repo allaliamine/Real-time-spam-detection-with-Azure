@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 import pickle
 import re
 import nltk
@@ -12,7 +13,8 @@ model = None
 vectorizer = None
 nltk.data.path.append('./nltk_data')
 
-
+class MessageInput(BaseModel):
+    message: str
 
 
 def init():
@@ -48,14 +50,17 @@ async def root():
     return {"message": "Spam Detection API is ready!"}
 
 
-@app.get("/predict/{data}")
-async def predict(data: str):
+@app.post("/predict")
+async def predict(data: MessageInput):
+
     if model is None or vectorizer is None:
         return {"error": "Model or vectorizer not loaded!"}
 
-    data = clean_text(data)
+    message = data.message
 
-    vectorized_data = vectorizer.transform([data])
+    cleaned_message = clean_text(message)
+
+    vectorized_data = vectorizer.transform([cleaned_message])
 
     prediction = model.predict(vectorized_data)
 
