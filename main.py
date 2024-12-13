@@ -43,6 +43,28 @@ def clean_text(text):
 
     return text
 
+def read_csv(file_path):
+    df = pd.read_csv(file_path)
+    
+    if 'Email' not in df.columns or 'Message' not in df.columns:
+        raise ValueError("CSV file must contain 'Email' and 'Message' columns")
+    
+    return df
+
+@app.get('/send-email')
+def send_email():
+    file_path = './Dataset/real-time-data.csv'
+    
+    df = read_csv(file_path)
+    
+    selected_email = df.sample(n=1).iloc[0]
+    
+    email_info = {
+        "email": selected_email['Email'],
+        "message": selected_email['Message'],
+    }
+    
+    return email_info
 
 @app.get("/")
 async def root():
