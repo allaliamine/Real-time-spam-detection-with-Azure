@@ -1,11 +1,7 @@
 annotated-types==0.7.0
 anyio==4.7.0
-azure-common==1.1.28
-azure-communication-email==1.0.0
 azure-core==1.32.0
 azure-eventhub==5.13.0
-azure-functions==1.21.3
-azure-mgmt-core==1.5.0
 certifi==2024.8.30
 charset-normalizer==3.4.0
 click==8.1.7
@@ -15,16 +11,13 @@ gunicorn==23.0.0
 h11==0.14.0
 httptools==0.6.4
 idna==3.10
-isodate==0.7.2
 Jinja2==3.1.4
 joblib==1.4.2
 markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mdurl==0.1.2
-msrest==0.7.1
 nltk==3.9.1
 numpy==2.2.0
-oauthlib==3.2.2
 orjson==3.10.12
 packaging==24.2
 pandas==2.2.3
@@ -39,7 +32,6 @@ pytz==2024.2
 PyYAML==6.0.2
 regex==2024.11.6
 requests==2.32.3
-requests-oauthlib==2.0.0
 rich==13.9.4
 rich-toolkit==0.12.0
 scikit-learn==1.6.0
