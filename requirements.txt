@@ -6,6 +6,7 @@ joblib==1.4.2
 nltk==3.9.1
 numpy==2.2.0
 orjson==3.10.12
+pandas==2.2.3
 pydantic==2.10.3
 pydantic-extra-types==2.10.1
 pydantic-settings==2.6.1
