@@ -1,25 +1,35 @@
-import logging
-import requests
-import json
 from azure.eventhub import EventHubConsumerClient
+from azure.communication.email import EmailClient
+from dotenv import load_dotenv
+import requests
+import logging
+import json
 import time
+import os
 
-CONNECTION_STR = "######"
+load_dotenv()
+
+conn_string_eventHUB = os.getenv('CONNECTION_STR')
+eventHUB_name = os.getenv('EVENTHUB_NAME')
+conn_string_email_sender = os.getenv('connection_string_email')
+senderADD = os.getenv('senderAddress')
+
+
+CONNECTION_STR = conn_string_eventHUB
 CONSUMER_GROUP = "$Default"
-EVENTHUB_NAME = "######"
+EVENTHUB_NAME = eventHUB_name
 PREDICT_API_URL = "https://spam-api-e7c4ayf6dfcvedfh.francecentral-01.azurewebsites.net/predict"
 
 
 
-from azure.communication.email import EmailClient
 
-def send_email(email, message):
+def send_email(email, message, sender):
     try:
-        connection_string = "#########"
+        connection_string = conn_string_email_sender
         client = EmailClient.from_connection_string(connection_string)
 
         message = {
-            "senderAddress": "##########",
+            "senderAddress": f"{senderADD}",
             "recipients": {
                 "to": [{"address": f"{email}"}]
             },
@@ -29,8 +39,9 @@ def send_email(email, message):
                 "html": f"""
 				<html>
 					<body>
-                        <h4>Hello a <a style="color:red;">SPAM</a> was detected</h4>
-						<h6>the message :</h6>
+                        <h3>Hello a <a style="color:red;">SPAM</a> was detected !!</h3>
+						<h4>It was sent by :{sender}</h4>
+                        <h4>The Message :</h4>
                         <p>{message}</p>
 					</body>
 				</html>"""
@@ -52,10 +63,9 @@ def on_event(partition_context, event):
     data = json.loads(event.body_as_str()) 
     email = data.get("email") 
     message = data.get("message") 
+    sender = data.get("sender")
 
-    # Call the predict API 
-
-    response = requests.post(PREDICT_API_URL, json={"email": email, "message": message}) 
+    response = requests.post(PREDICT_API_URL, json={"email": email, "message": message, "sender": sender}) 
     prediction = response.json().get("prediction")
     
     logging.info(f"Predicted result for {message}: {prediction}") 
@@ -66,10 +76,6 @@ def on_event(partition_context, event):
     if prediction == "Spam": 
         send_email(email, message)
         time.sleep(8)
-    # If the content is detected as spam, send an alert email 
-    # if prediction.get("is_spam"): 
-    #     # send_alert_email(email, message) 
-    #     partition_context.update_checkpoint(event)
 
 def main(): 
     client = EventHubConsumerClient.from_connection_string( 

@@ -1,11 +1,20 @@
-import asyncio
-import json
 from azure.eventhub import EventData
 from azure.eventhub.aio import EventHubProducerClient
+from dotenv import load_dotenv
 import requests
+import asyncio
+import json
+import os
 
-EVENT_HUB_CONNECTION_STR = "########"
-EVENT_HUB_NAME = "##########"
+
+
+load_dotenv()
+
+conn_string_eventHUB = os.getenv('CONNECTION_STR')
+eventHUB_name = os.getenv('EVENTHUB_NAME')
+
+EVENT_HUB_CONNECTION_STR = conn_string_eventHUB
+EVENT_HUB_NAME = eventHUB_name
 
 
 def fetch_api_data(api_url): 

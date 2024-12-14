@@ -1,11 +1,11 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
-import pandas as pd
-import pickle
-import re
-import nltk
 from nltk import WordNetLemmatizer
 from nltk.corpus import stopwords
+from pydantic import BaseModel
+from fastapi import FastAPI
+import pandas as pd
+import pickle
+import nltk
+import re
 
 app = FastAPI()
 
@@ -45,16 +45,16 @@ def clean_text(text):
     return text
 
 def read_csv(file_path):
-    df = pd.read_csv(file_path)
-    
-    if 'Email' not in df.columns or 'Message' not in df.columns:
+    df = pd.read_csv(file_path, quotechar='"')
+        
+    if 'Email' not in df.columns or 'Message' not in df.columns  or 'Sender' not in df.columns:
         raise ValueError("CSV file must contain 'Email' and 'Message' columns")
     
     return df
 
 @app.get('/send-email')
 def send_email():
-    file_path = './Dataset/real-time-data.csv'
+    file_path = './Dataset/generated-dataset.csv'
     
     df = read_csv(file_path)
     
@@ -63,6 +63,7 @@ def send_email():
     email_info = {
         "email": selected_email['Email'],
         "message": selected_email['Message'],
+        "sender": selected_email['Sender'],
     }
     
     return email_info
