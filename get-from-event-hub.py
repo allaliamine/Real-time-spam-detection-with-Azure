@@ -33,7 +33,7 @@ def save_to_blob_storage(data, file_name):
                                                           blob=file_name)
         
         blob_client.upload_blob(data, overwrite=True) 
-        print(f"Data saved to blob storage as {file_name}") 
+        print(f"Data saved to blob storage") 
 
     except Exception as ex: 
         print(f"Failed to save data to blob storage: {ex}")
@@ -67,7 +67,6 @@ def send_email(email, message, sender):
         }
 
         poller = client.begin_send(message)
-        result = poller.result()
         print("Message sent")
 
     except Exception as ex:
@@ -86,7 +85,7 @@ def on_event(partition_context, event):
     prediction = response.json().get("prediction")
     
     logging.info(f"Predicted result for {message}: {prediction}") 
-
+    print("----------------------------------------------")
     print(f"Predicted result for {message}: {prediction}") 
     print()
 
