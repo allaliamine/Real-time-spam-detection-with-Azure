@@ -1,4 +1,4 @@
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient
+from azure.storage.blob import BlobServiceClient
 from azure.eventhub import EventHubConsumerClient
 from azure.communication.email import EmailClient
 from dotenv import load_dotenv
@@ -74,7 +74,7 @@ def send_email(email, message, sender):
 
 
 
-def on_event(partition_context, event):
+def on_event(event):
      
     data = json.loads(event.body_as_str()) 
     email = data.get("email") 
