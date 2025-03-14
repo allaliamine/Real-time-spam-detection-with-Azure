@@ -120,7 +120,7 @@ To test real-time email notifications:
 
 #### Exemple of Notifications
 
-![image](https://github.com/allaliamine/Real-time-spam-detection-with-Azure/tree/main/pictures/notification_exemple.png)
+![image](pictures/notification_exemple.png)
 
 
 
