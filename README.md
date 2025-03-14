@@ -29,7 +29,7 @@ A real-time spam detection system leveraging Microsoft Azure cloud services to p
 
 ## Architecture Overview
 
-![image](https://github.com/allaliamine/Real-time-spam-detection-with-Azure/tree/main/pictures/Architecture.png)
+<img src="pictures/Architecture.png" alt="image" width="1920" height="1045">
 
 
 ## Technologies Used
