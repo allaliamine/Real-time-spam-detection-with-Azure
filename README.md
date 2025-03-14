@@ -29,7 +29,7 @@ A real-time spam detection system leveraging Microsoft Azure cloud services to p
 
 ## Architecture Overview
 
-<img src="pictures/Architecture.png" alt="image" width="1920" height="1045">
+<img src="pictures/Architecture.png" alt="image" width="1600" height="871">
 
 
 ## Technologies Used
