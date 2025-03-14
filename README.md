@@ -120,7 +120,7 @@ To test real-time email notifications:
 
 #### Exemple of Notifications
 
-![image](pictures/notification_exemple.png)
+![image](pictures/notification_exemple.png =600x500)
 
 
 
