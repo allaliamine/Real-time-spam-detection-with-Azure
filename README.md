@@ -38,7 +38,6 @@ A real-time spam detection system leveraging Microsoft Azure cloud services to p
 Cloud Services:
 
 - Azure Event Hubs (Real-time Data Streaming)
-- Azure Machine Learning
 - Azure Web App (Hosting the model as an API)
 - Azure App insight (Monitoring and logging)
 - Azure Blob Storage
