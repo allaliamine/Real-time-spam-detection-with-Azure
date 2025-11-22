@@ -114,7 +114,7 @@ python3 get-from-event-hub.py
 #### Real-Time Email Notifications
 To test real-time email notifications:
 
-    1. Open the Datasets/generated-dataset.csv file.
+    1.Open the Datasets/generated-dataset.csv file.
     2.Replace the email address anir.linux111@gmail.com with an email address you have access to.
     3.Save the file and run the scripts again.
 
