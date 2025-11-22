@@ -126,7 +126,6 @@ To test real-time email notifications:
 
 
 
-
 ## Contact
 
 For any inquiries or feedback, please contact:
